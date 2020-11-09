@@ -20,12 +20,12 @@ namespace WA_Proyecto_Chamba_Search
             cboDistrito.DataValueField = "idDistrito";
             cboDistrito.DataBind();
         }
-        void mensaje(string msj)
+        public void mensaje(string msj)
         {
             Response.Write("<script>alert('" + msj + "')</script>");
         }
 
-        void GrabarUsuario()
+        public void registrarMaestro()
         {
             EntidadPersona ep = new EntidadPersona();
             EntidadUsuario eu = new EntidadUsuario();
@@ -41,23 +41,24 @@ namespace WA_Proyecto_Chamba_Search
             ep.imagen_perfil = fileupload.PostedFile.FileName;
             eu.nom_usuario = txtUsusario.Text.Trim();
             eu.password = txtPassword.Text.Trim();
+            eu.idtipo_usuario = 1;
 
             DaoUsuario usu = new DaoUsuario();
             mensaje(usu.insertarUsuario(eu,ep));
         }
-        protected void Page_Load(object sender, EventArgs e) 
+        protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 rdSexo.Items.Add("Hombre");
                 rdSexo.Items.Add("Mujer");
-                listaComboDistrito();            
+                listaComboDistrito();
             }
         }
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            GrabarUsuario();
+            registrarMaestro(); //agregar que envie un mensaje de error desde el sql
         }
     }
 }

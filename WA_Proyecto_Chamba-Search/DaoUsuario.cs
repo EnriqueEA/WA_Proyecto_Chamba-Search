@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Data.SqlClient;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace WA_Proyecto_Chamba_Search
 {
@@ -16,7 +16,8 @@ namespace WA_Proyecto_Chamba_Search
             string msj = null;
             try
             {
-                SqlCommand cmd = new SqlCommand("pd_insertar_usuario_maestro", con);
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText = "pd_insertar_usuario_maestro";
                 cmd.Parameters.AddWithValue("@tipo_usu", eu.idtipo_usuario);
                 cmd.Parameters.AddWithValue("@nom_usu", eu.nom_usuario);
                 cmd.Parameters.AddWithValue("@password", eu.password);
@@ -32,6 +33,7 @@ namespace WA_Proyecto_Chamba_Search
                 cmd.Parameters.AddWithValue("@email", ep.email);
 
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Connection = con;
                 con.Open();
                 cmd.ExecuteNonQuery();
                 con.Close();
