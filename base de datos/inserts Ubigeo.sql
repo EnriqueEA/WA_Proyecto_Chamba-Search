@@ -1,3 +1,5 @@
+Use DB_ChambaSearch
+GO
 INSERT INTO departamento VALUES
 ('01', 'Amazonas'),
 ('02', 'Áncash'),
@@ -2101,5 +2103,4 @@ INSERT INTO distrito (idDistrito, nombreDistrito, idprovincia) VALUES
 ('250303', 'Curimana', '2503'), 
 ('250304', 'Neshuya', '2503'), 
 ('250305', 'Alexander Von Humboldt', '2503'), 
-('250401', 'Purus', '2504')
-select * from distrito
+('250401', 'Purus', '2504');

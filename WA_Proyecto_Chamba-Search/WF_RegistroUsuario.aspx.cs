@@ -20,6 +20,10 @@ namespace WA_Proyecto_Chamba_Search
             cboDistrito.DataValueField = "idDistrito";
             cboDistrito.DataBind();
         }
+        void mensaje(string msj)
+        {
+            Response.Write("<script>alert('" + msj + "')</script>");
+        }
 
         void GrabarUsuario()
         {
@@ -35,7 +39,11 @@ namespace WA_Proyecto_Chamba_Search
             ep.celular = txtCelular.Text.Trim();
             ep.email = txtEmail.Text.Trim();
             ep.imagen_perfil = fileupload.PostedFile.FileName;
+            eu.nom_usuario = txtUsusario.Text.Trim();
+            eu.password = txtPassword.Text.Trim();
 
+            DaoUsuario usu = new DaoUsuario();
+            mensaje(usu.insertarUsuario(eu,ep));
         }
         protected void Page_Load(object sender, EventArgs e) 
         {
@@ -49,7 +57,7 @@ namespace WA_Proyecto_Chamba_Search
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-
+            GrabarUsuario();
         }
     }
 }

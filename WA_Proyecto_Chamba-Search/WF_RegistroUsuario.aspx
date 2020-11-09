@@ -47,6 +47,18 @@
             <br />
             <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
             <br />
+            <asp:Label ID="Label11" runat="server" Text="Usuario:"></asp:Label>
+            <br />
+            <asp:TextBox ID="txtUsusario" runat="server"></asp:TextBox>
+            <br />
+            <asp:Label ID="Label12" runat="server" Text="Contraseña:"></asp:Label>
+            <br />
+            <asp:TextBox ID="txtPassword" runat="server" TextMode="Password"></asp:TextBox>
+            <br />
+            <asp:Label ID="Label13" runat="server" Text="Vuelva a escribir la contraseña:"></asp:Label>
+            <br />
+            <asp:TextBox ID="txtRepetirPswd" runat="server" TextMode="Password"></asp:TextBox>
+            <br />
             <asp:Label ID="Label9" runat="server" Text="Imagen de Perfil:"></asp:Label>
             <br />
             <asp:FileUpload ID="fileupload" runat="server" />
