@@ -46,13 +46,13 @@
 
             <asp:Label ID="lblU" runat="server" Text="Usuario"></asp:Label>
             <br />
-            <asp:TextBox ID="TextBox1" CssClass="text" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtUsuario" CssClass="text" runat="server"></asp:TextBox>
             <br />
             <asp:Label ID="lblC" runat="server" Text="Contraseña"></asp:Label>
             <br />
-            <asp:TextBox ID="TextBox2" CssClass="text" runat="server" TextMode="Password"></asp:TextBox>
+            <asp:TextBox ID="txtPassw" CssClass="text" runat="server" TextMode="Password"></asp:TextBox>
             <br />
-            <asp:Button ID="btnIngresar" runat="server" Text="Ingresar" />
+            <asp:Button ID="btnIngresar" runat="server" Text="Ingresar" OnClick="btnIngresar_Click" />
 
         </form>
     </div>

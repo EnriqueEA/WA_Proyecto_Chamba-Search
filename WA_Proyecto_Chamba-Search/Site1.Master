@@ -12,7 +12,7 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <h1>Master</h1>
+            <a href="WF_RegistroUsuario.aspx">Registro de Maestro</a>
         </div>
         <div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">

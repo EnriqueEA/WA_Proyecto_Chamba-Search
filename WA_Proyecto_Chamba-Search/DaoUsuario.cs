@@ -48,5 +48,19 @@ namespace WA_Proyecto_Chamba_Search
 
             return msj;
         }
+
+        public DataTable login(EntidadUsuario eu)
+        {
+            SqlDataAdapter da = new SqlDataAdapter(
+                "SELECT nom_usuario,contraseña FROM usuario " +
+                "WHERE nom_usuario=@usu and contraseña=@pwd", con);
+            
+            da.SelectCommand.Parameters.AddWithValue("@usu", eu.nom_usuario);
+            da.SelectCommand.Parameters.AddWithValue("@pwd", eu.password);
+
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            return dt;
+        }
     }
 }

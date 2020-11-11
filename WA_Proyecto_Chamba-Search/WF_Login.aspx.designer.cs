@@ -114,13 +114,13 @@ namespace WA_Proyecto_Chamba_Search
         protected global::System.Web.UI.WebControls.Label lblU;
 
         /// <summary>
-        /// Control TextBox1.
+        /// Control txtUsuario.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox txtUsuario;
 
         /// <summary>
         /// Control lblC.
@@ -132,13 +132,13 @@ namespace WA_Proyecto_Chamba_Search
         protected global::System.Web.UI.WebControls.Label lblC;
 
         /// <summary>
-        /// Control TextBox2.
+        /// Control txtPassw.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
+        protected global::System.Web.UI.WebControls.TextBox txtPassw;
 
         /// <summary>
         /// Control btnIngresar.

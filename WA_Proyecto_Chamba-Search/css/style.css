@@ -1,6 +1,7 @@
 ﻿.contenedor {
     margin: 13% 38% 0 38%;
     padding: 2% 3%;
+    border: 1px solid #808080;
 }
 
 .text {
