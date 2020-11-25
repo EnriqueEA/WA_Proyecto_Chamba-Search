@@ -78,6 +78,7 @@ CREATE TABLE DB_ChambaSearch.dbo.comentario (
 idcomentario int identity(1,1),
 idpersona int not null,
 idDetalleServicio int not null, --fk
+fecha date not null,
 titulo varchar(20) not null,
 contenido varchar(500) not null,
 likes decimal(18,0) not null,
@@ -149,14 +150,17 @@ ALTER PROCEDURE pd_insertar_persona(
 @idDistrito int,@nombres varchar(50),@apePaterno varchar(50),@apeMaterno varchar(50),
 @fechaNac date,@sexo varchar(2),@dni varchar(9) = null,@celular varchar(9) = null,
 @email varchar(45) = null,@imagenPerfil varchar(20) = null,@idtipoCuenta int,
-@nom_usu varchar(45),@password varchar(45))
+@nom_usu varchar(45),@password varchar(45),@estadoCuenta varchar(15) = 'Habilitado')
 AS
 BEGIN
 	IF @idtipoCuenta = 1
 		INSERT INTO persona
 		([idDistrito],[nombres],[apePaterno],[apeMaterno],[fechaNacimiento],[sexo],
 		[imagenPerfil],[idtipoCuenta],[nom_usuario],[password],[fechaRegistrado],[estadoCuenta]) 
-	IF @idtipoCuenta = 2
+		VALUES
+			(@idDistrito,@nombres,@apePaterno,@apeMaterno,@fechaNac,@sexo,
+			@imagenPerfil,@idtipoCuenta,@nom_usu,@password,GETDATE(),@estadoCuenta)
+	ELSE IF @idtipoCuenta = 2
 		INSERT INTO persona 
 		([idDistrito],[nombres],[apePaterno],[apeMaterno],[fechaNacimiento],
 		[sexo],[dni],[celular],[email],[imagenPerfil],[idtipoCuenta],
@@ -173,7 +177,7 @@ BEGIN
 			(@idDistrito,@nombres,@apePaterno,@apeMaterno,@fechaNac,@sexo,
 			@imagenPerfil,@idtipoCuenta,@nom_usu,@password,GETDATE(),'Habilitado')
 	ELSE
-		PRINT 'Tipo de cuenta no existente'
+		PRINT 'Tipo de cuenta no existente.'
 END
 GO 
 /**************************************INSERTS***********************************************/
