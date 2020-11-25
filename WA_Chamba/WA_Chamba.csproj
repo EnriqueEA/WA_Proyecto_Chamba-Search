@@ -146,6 +146,8 @@
     <Compile Include="comentario.cs">
       <DependentUpon>ChambaSearch.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\comentariosController.cs" />
+    <Compile Include="Controllers\detalleServiciosController.cs" />
     <Compile Include="Controllers\distritoesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\personasController.cs" />
@@ -253,6 +255,16 @@
     <Content Include="Views\distritoes\Details.cshtml" />
     <Content Include="Views\distritoes\Edit.cshtml" />
     <Content Include="Views\distritoes\Index.cshtml" />
+    <Content Include="Views\comentarios\Create.cshtml" />
+    <Content Include="Views\comentarios\Delete.cshtml" />
+    <Content Include="Views\comentarios\Details.cshtml" />
+    <Content Include="Views\comentarios\Edit.cshtml" />
+    <Content Include="Views\comentarios\Index.cshtml" />
+    <Content Include="Views\detalleServicios\Create.cshtml" />
+    <Content Include="Views\detalleServicios\Delete.cshtml" />
+    <Content Include="Views\detalleServicios\Details.cshtml" />
+    <Content Include="Views\detalleServicios\Edit.cshtml" />
+    <Content Include="Views\detalleServicios\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
