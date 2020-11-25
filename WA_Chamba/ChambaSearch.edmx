@@ -1,0 +1,868 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DB_ChambaSearchModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="comentario">
+          <Key>
+            <PropertyRef Name="idcomentario" />
+          </Key>
+          <Property Name="idcomentario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idpersona" Type="int" Nullable="false" />
+          <Property Name="idDetalleServicio" Type="int" Nullable="false" />
+          <Property Name="titulo" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="contenido" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="likes" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="dislikes" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="departamento">
+          <Key>
+            <PropertyRef Name="idDepartamento" />
+          </Key>
+          <Property Name="idDepartamento" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="nombreDepartamento" Type="varchar" MaxLength="25" />
+        </EntityType>
+        <EntityType Name="detalleServicio">
+          <Key>
+            <PropertyRef Name="idDetalleServicio" />
+          </Key>
+          <Property Name="idDetalleServicio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idpersona" Type="int" Nullable="false" />
+          <Property Name="idservicio" Type="int" Nullable="false" />
+          <Property Name="idimagen" Type="int" />
+          <Property Name="cantidadcomentario" Type="int" />
+        </EntityType>
+        <EntityType Name="distrito">
+          <Key>
+            <PropertyRef Name="idDistrito" />
+          </Key>
+          <Property Name="idDistrito" Type="varchar" MaxLength="7" Nullable="false" />
+          <Property Name="idprovincia" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="nombreDistrito" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="documento">
+          <Key>
+            <PropertyRef Name="idDocumento" />
+          </Key>
+          <Property Name="idDocumento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="documentoValidacion">
+          <Key>
+            <PropertyRef Name="idDocumentoValidacion" />
+          </Key>
+          <Property Name="idDocumentoValidacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idpersona" Type="int" Nullable="false" />
+          <Property Name="idDocumento" Type="int" Nullable="false" />
+          <Property Name="estadoDocumento" Type="varchar" MaxLength="8" Nullable="false" />
+        </EntityType>
+        <EntityType Name="imagen">
+          <Key>
+            <PropertyRef Name="idimagen" />
+          </Key>
+          <Property Name="idimagen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ruta" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="extencion" Type="varchar" MaxLength="4" />
+          <Property Name="tamaño" Type="int" />
+        </EntityType>
+        <EntityType Name="persona">
+          <Key>
+            <PropertyRef Name="idpersona" />
+          </Key>
+          <Property Name="idpersona" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idDistrito" Type="varchar" MaxLength="7" Nullable="false" />
+          <Property Name="nombres" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="apePaterno" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="apeMaterno" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="fechaNacimiento" Type="date" Nullable="false" />
+          <Property Name="sexo" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="dni" Type="varchar" MaxLength="8" />
+          <Property Name="celular" Type="varchar" MaxLength="9" />
+          <Property Name="email" Type="varchar" MaxLength="45" />
+          <Property Name="imagenPerfil" Type="varchar" MaxLength="20" />
+          <Property Name="idtipoCuenta" Type="int" Nullable="false" />
+          <Property Name="nom_usuario" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="fechaRegistrado" Type="datetime" />
+          <Property Name="estadoCuenta" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="provincia">
+          <Key>
+            <PropertyRef Name="idprovincia" />
+          </Key>
+          <Property Name="idprovincia" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="idDepartamento" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="nombreProvincia" Type="varchar" MaxLength="25" />
+        </EntityType>
+        <EntityType Name="servicio">
+          <Key>
+            <PropertyRef Name="idservicio" />
+          </Key>
+          <Property Name="idservicio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idtipoServicio" Type="int" Nullable="false" />
+          <Property Name="nombreServicio" Type="varchar" MaxLength="50" />
+          <Property Name="descripcion" Type="varchar" MaxLength="250" />
+          <Property Name="cobroServicio" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tipoCuenta">
+          <Key>
+            <PropertyRef Name="idtipoCuenta" />
+          </Key>
+          <Property Name="idtipoCuenta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombreTipoCuenta" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tiposervicio">
+          <Key>
+            <PropertyRef Name="idtipoServicio" />
+          </Key>
+          <Property Name="idtipoServicio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombreTipoServicio" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <Association Name="fk_comentario_idDetalleServicio">
+          <End Role="detalleServicio" Type="Self.detalleServicio" Multiplicity="1" />
+          <End Role="comentario" Type="Self.comentario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="detalleServicio">
+              <PropertyRef Name="idDetalleServicio" />
+            </Principal>
+            <Dependent Role="comentario">
+              <PropertyRef Name="idDetalleServicio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_comentario_idpersona">
+          <End Role="persona" Type="Self.persona" Multiplicity="1" />
+          <End Role="comentario" Type="Self.comentario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="persona">
+              <PropertyRef Name="idpersona" />
+            </Principal>
+            <Dependent Role="comentario">
+              <PropertyRef Name="idpersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_cuenta_idtipoCuenta">
+          <End Role="tipoCuenta" Type="Self.tipoCuenta" Multiplicity="1" />
+          <End Role="persona" Type="Self.persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipoCuenta">
+              <PropertyRef Name="idtipoCuenta" />
+            </Principal>
+            <Dependent Role="persona">
+              <PropertyRef Name="idtipoCuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_detalleServicio_idimagen">
+          <End Role="imagen" Type="Self.imagen" Multiplicity="0..1" />
+          <End Role="detalleServicio" Type="Self.detalleServicio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="imagen">
+              <PropertyRef Name="idimagen" />
+            </Principal>
+            <Dependent Role="detalleServicio">
+              <PropertyRef Name="idimagen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_detalleServicio_idpersona">
+          <End Role="persona" Type="Self.persona" Multiplicity="1" />
+          <End Role="detalleServicio" Type="Self.detalleServicio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="persona">
+              <PropertyRef Name="idpersona" />
+            </Principal>
+            <Dependent Role="detalleServicio">
+              <PropertyRef Name="idpersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_detalleServicio_idservicio">
+          <End Role="servicio" Type="Self.servicio" Multiplicity="1" />
+          <End Role="detalleServicio" Type="Self.detalleServicio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="servicio">
+              <PropertyRef Name="idservicio" />
+            </Principal>
+            <Dependent Role="detalleServicio">
+              <PropertyRef Name="idservicio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_distrito_idprovincia">
+          <End Role="provincia" Type="Self.provincia" Multiplicity="1" />
+          <End Role="distrito" Type="Self.distrito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="provincia">
+              <PropertyRef Name="idprovincia" />
+            </Principal>
+            <Dependent Role="distrito">
+              <PropertyRef Name="idprovincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_documentoValidacion_idDocumento">
+          <End Role="documento" Type="Self.documento" Multiplicity="1" />
+          <End Role="documentoValidacion" Type="Self.documentoValidacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="documento">
+              <PropertyRef Name="idDocumento" />
+            </Principal>
+            <Dependent Role="documentoValidacion">
+              <PropertyRef Name="idDocumento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_documentoValidacion_idpersona">
+          <End Role="persona" Type="Self.persona" Multiplicity="1" />
+          <End Role="documentoValidacion" Type="Self.documentoValidacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="persona">
+              <PropertyRef Name="idpersona" />
+            </Principal>
+            <Dependent Role="documentoValidacion">
+              <PropertyRef Name="idpersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_persona_idDistrito">
+          <End Role="distrito" Type="Self.distrito" Multiplicity="1" />
+          <End Role="persona" Type="Self.persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="distrito">
+              <PropertyRef Name="idDistrito" />
+            </Principal>
+            <Dependent Role="persona">
+              <PropertyRef Name="idDistrito" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_provincia_idDepartamento">
+          <End Role="departamento" Type="Self.departamento" Multiplicity="1" />
+          <End Role="provincia" Type="Self.provincia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="departamento">
+              <PropertyRef Name="idDepartamento" />
+            </Principal>
+            <Dependent Role="provincia">
+              <PropertyRef Name="idDepartamento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_servicio_idtipoServicio">
+          <End Role="tiposervicio" Type="Self.tiposervicio" Multiplicity="1" />
+          <End Role="servicio" Type="Self.servicio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tiposervicio">
+              <PropertyRef Name="idtipoServicio" />
+            </Principal>
+            <Dependent Role="servicio">
+              <PropertyRef Name="idtipoServicio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DB_ChambaSearchModelStoreContainer">
+          <EntitySet Name="comentario" EntityType="Self.comentario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="departamento" EntityType="Self.departamento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="detalleServicio" EntityType="Self.detalleServicio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="distrito" EntityType="Self.distrito" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="documento" EntityType="Self.documento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="documentoValidacion" EntityType="Self.documentoValidacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="imagen" EntityType="Self.imagen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="persona" EntityType="Self.persona" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="provincia" EntityType="Self.provincia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="servicio" EntityType="Self.servicio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tipoCuenta" EntityType="Self.tipoCuenta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tiposervicio" EntityType="Self.tiposervicio" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_comentario_idDetalleServicio" Association="Self.fk_comentario_idDetalleServicio">
+            <End Role="detalleServicio" EntitySet="detalleServicio" />
+            <End Role="comentario" EntitySet="comentario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_comentario_idpersona" Association="Self.fk_comentario_idpersona">
+            <End Role="persona" EntitySet="persona" />
+            <End Role="comentario" EntitySet="comentario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_cuenta_idtipoCuenta" Association="Self.fk_cuenta_idtipoCuenta">
+            <End Role="tipoCuenta" EntitySet="tipoCuenta" />
+            <End Role="persona" EntitySet="persona" />
+          </AssociationSet>
+          <AssociationSet Name="fk_detalleServicio_idimagen" Association="Self.fk_detalleServicio_idimagen">
+            <End Role="imagen" EntitySet="imagen" />
+            <End Role="detalleServicio" EntitySet="detalleServicio" />
+          </AssociationSet>
+          <AssociationSet Name="fk_detalleServicio_idpersona" Association="Self.fk_detalleServicio_idpersona">
+            <End Role="persona" EntitySet="persona" />
+            <End Role="detalleServicio" EntitySet="detalleServicio" />
+          </AssociationSet>
+          <AssociationSet Name="fk_detalleServicio_idservicio" Association="Self.fk_detalleServicio_idservicio">
+            <End Role="servicio" EntitySet="servicio" />
+            <End Role="detalleServicio" EntitySet="detalleServicio" />
+          </AssociationSet>
+          <AssociationSet Name="fk_distrito_idprovincia" Association="Self.fk_distrito_idprovincia">
+            <End Role="provincia" EntitySet="provincia" />
+            <End Role="distrito" EntitySet="distrito" />
+          </AssociationSet>
+          <AssociationSet Name="fk_documentoValidacion_idDocumento" Association="Self.fk_documentoValidacion_idDocumento">
+            <End Role="documento" EntitySet="documento" />
+            <End Role="documentoValidacion" EntitySet="documentoValidacion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_documentoValidacion_idpersona" Association="Self.fk_documentoValidacion_idpersona">
+            <End Role="persona" EntitySet="persona" />
+            <End Role="documentoValidacion" EntitySet="documentoValidacion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_persona_idDistrito" Association="Self.fk_persona_idDistrito">
+            <End Role="distrito" EntitySet="distrito" />
+            <End Role="persona" EntitySet="persona" />
+          </AssociationSet>
+          <AssociationSet Name="fk_provincia_idDepartamento" Association="Self.fk_provincia_idDepartamento">
+            <End Role="departamento" EntitySet="departamento" />
+            <End Role="provincia" EntitySet="provincia" />
+          </AssociationSet>
+          <AssociationSet Name="fk_servicio_idtipoServicio" Association="Self.fk_servicio_idtipoServicio">
+            <End Role="tiposervicio" EntitySet="tiposervicio" />
+            <End Role="servicio" EntitySet="servicio" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DB_ChambaSearchModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="comentario">
+          <Key>
+            <PropertyRef Name="idcomentario" />
+          </Key>
+          <Property Name="idcomentario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idpersona" Type="Int32" Nullable="false" />
+          <Property Name="idDetalleServicio" Type="Int32" Nullable="false" />
+          <Property Name="titulo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="contenido" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="likes" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="dislikes" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="detalleServicio" Relationship="Self.fk_comentario_idDetalleServicio" FromRole="comentario" ToRole="detalleServicio" />
+          <NavigationProperty Name="persona" Relationship="Self.fk_comentario_idpersona" FromRole="comentario" ToRole="persona" />
+        </EntityType>
+        <EntityType Name="departamento">
+          <Key>
+            <PropertyRef Name="idDepartamento" />
+          </Key>
+          <Property Name="idDepartamento" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombreDepartamento" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="provincia" Relationship="Self.fk_provincia_idDepartamento" FromRole="departamento" ToRole="provincia" />
+        </EntityType>
+        <EntityType Name="detalleServicio">
+          <Key>
+            <PropertyRef Name="idDetalleServicio" />
+          </Key>
+          <Property Name="idDetalleServicio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idpersona" Type="Int32" Nullable="false" />
+          <Property Name="idservicio" Type="Int32" Nullable="false" />
+          <Property Name="idimagen" Type="Int32" />
+          <Property Name="cantidadcomentario" Type="Int32" />
+          <NavigationProperty Name="comentario" Relationship="Self.fk_comentario_idDetalleServicio" FromRole="detalleServicio" ToRole="comentario" />
+          <NavigationProperty Name="imagen" Relationship="Self.fk_detalleServicio_idimagen" FromRole="detalleServicio" ToRole="imagen" />
+          <NavigationProperty Name="persona" Relationship="Self.fk_detalleServicio_idpersona" FromRole="detalleServicio" ToRole="persona" />
+          <NavigationProperty Name="servicio" Relationship="Self.fk_detalleServicio_idservicio" FromRole="detalleServicio" ToRole="servicio" />
+        </EntityType>
+        <EntityType Name="distrito">
+          <Key>
+            <PropertyRef Name="idDistrito" />
+          </Key>
+          <Property Name="idDistrito" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idprovincia" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombreDistrito" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="provincia" Relationship="Self.fk_distrito_idprovincia" FromRole="distrito" ToRole="provincia" />
+          <NavigationProperty Name="persona" Relationship="Self.fk_persona_idDistrito" FromRole="distrito" ToRole="persona" />
+        </EntityType>
+        <EntityType Name="documento">
+          <Key>
+            <PropertyRef Name="idDocumento" />
+          </Key>
+          <Property Name="idDocumento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="documentoValidacion" Relationship="Self.fk_documentoValidacion_idDocumento" FromRole="documento" ToRole="documentoValidacion" />
+        </EntityType>
+        <EntityType Name="documentoValidacion">
+          <Key>
+            <PropertyRef Name="idDocumentoValidacion" />
+          </Key>
+          <Property Name="idDocumentoValidacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idpersona" Type="Int32" Nullable="false" />
+          <Property Name="idDocumento" Type="Int32" Nullable="false" />
+          <Property Name="estadoDocumento" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="documento" Relationship="Self.fk_documentoValidacion_idDocumento" FromRole="documentoValidacion" ToRole="documento" />
+          <NavigationProperty Name="persona" Relationship="Self.fk_documentoValidacion_idpersona" FromRole="documentoValidacion" ToRole="persona" />
+        </EntityType>
+        <EntityType Name="imagen">
+          <Key>
+            <PropertyRef Name="idimagen" />
+          </Key>
+          <Property Name="idimagen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ruta" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="extencion" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="tamaño" Type="Int32" />
+          <NavigationProperty Name="detalleServicio" Relationship="Self.fk_detalleServicio_idimagen" FromRole="imagen" ToRole="detalleServicio" />
+        </EntityType>
+        <EntityType Name="persona">
+          <Key>
+            <PropertyRef Name="idpersona" />
+          </Key>
+          <Property Name="idpersona" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idDistrito" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombres" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apePaterno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apeMaterno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fechaNacimiento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="sexo" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dni" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="celular" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="imagenPerfil" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="idtipoCuenta" Type="Int32" Nullable="false" />
+          <Property Name="nom_usuario" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fechaRegistrado" Type="DateTime" Precision="3" />
+          <Property Name="estadoCuenta" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="comentario" Relationship="Self.fk_comentario_idpersona" FromRole="persona" ToRole="comentario" />
+          <NavigationProperty Name="detalleServicio" Relationship="Self.fk_detalleServicio_idpersona" FromRole="persona" ToRole="detalleServicio" />
+          <NavigationProperty Name="distrito" Relationship="Self.fk_persona_idDistrito" FromRole="persona" ToRole="distrito" />
+          <NavigationProperty Name="documentoValidacion" Relationship="Self.fk_documentoValidacion_idpersona" FromRole="persona" ToRole="documentoValidacion" />
+          <NavigationProperty Name="tipoCuenta" Relationship="Self.fk_cuenta_idtipoCuenta" FromRole="persona" ToRole="tipoCuenta" />
+        </EntityType>
+        <EntityType Name="provincia">
+          <Key>
+            <PropertyRef Name="idprovincia" />
+          </Key>
+          <Property Name="idprovincia" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idDepartamento" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombreProvincia" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="departamento" Relationship="Self.fk_provincia_idDepartamento" FromRole="provincia" ToRole="departamento" />
+          <NavigationProperty Name="distrito" Relationship="Self.fk_distrito_idprovincia" FromRole="provincia" ToRole="distrito" />
+        </EntityType>
+        <EntityType Name="servicio">
+          <Key>
+            <PropertyRef Name="idservicio" />
+          </Key>
+          <Property Name="idservicio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idtipoServicio" Type="Int32" Nullable="false" />
+          <Property Name="nombreServicio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="cobroServicio" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+          <NavigationProperty Name="detalleServicio" Relationship="Self.fk_detalleServicio_idservicio" FromRole="servicio" ToRole="detalleServicio" />
+          <NavigationProperty Name="tiposervicio" Relationship="Self.fk_servicio_idtipoServicio" FromRole="servicio" ToRole="tiposervicio" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tipoCuenta">
+          <Key>
+            <PropertyRef Name="idtipoCuenta" />
+          </Key>
+          <Property Name="idtipoCuenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombreTipoCuenta" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="persona" Relationship="Self.fk_cuenta_idtipoCuenta" FromRole="tipoCuenta" ToRole="persona" />
+        </EntityType>
+        <EntityType Name="tiposervicio">
+          <Key>
+            <PropertyRef Name="idtipoServicio" />
+          </Key>
+          <Property Name="idtipoServicio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombreTipoServicio" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="servicio" Relationship="Self.fk_servicio_idtipoServicio" FromRole="tiposervicio" ToRole="servicio" />
+        </EntityType>
+        <Association Name="fk_comentario_idDetalleServicio">
+          <End Role="detalleServicio" Type="Self.detalleServicio" Multiplicity="1" />
+          <End Role="comentario" Type="Self.comentario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="detalleServicio">
+              <PropertyRef Name="idDetalleServicio" />
+            </Principal>
+            <Dependent Role="comentario">
+              <PropertyRef Name="idDetalleServicio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_comentario_idpersona">
+          <End Role="persona" Type="Self.persona" Multiplicity="1" />
+          <End Role="comentario" Type="Self.comentario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="persona">
+              <PropertyRef Name="idpersona" />
+            </Principal>
+            <Dependent Role="comentario">
+              <PropertyRef Name="idpersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_provincia_idDepartamento">
+          <End Role="departamento" Type="Self.departamento" Multiplicity="1" />
+          <End Role="provincia" Type="Self.provincia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="departamento">
+              <PropertyRef Name="idDepartamento" />
+            </Principal>
+            <Dependent Role="provincia">
+              <PropertyRef Name="idDepartamento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_detalleServicio_idimagen">
+          <End Role="imagen" Type="Self.imagen" Multiplicity="0..1" />
+          <End Role="detalleServicio" Type="Self.detalleServicio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="imagen">
+              <PropertyRef Name="idimagen" />
+            </Principal>
+            <Dependent Role="detalleServicio">
+              <PropertyRef Name="idimagen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_detalleServicio_idpersona">
+          <End Role="persona" Type="Self.persona" Multiplicity="1" />
+          <End Role="detalleServicio" Type="Self.detalleServicio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="persona">
+              <PropertyRef Name="idpersona" />
+            </Principal>
+            <Dependent Role="detalleServicio">
+              <PropertyRef Name="idpersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_detalleServicio_idservicio">
+          <End Role="servicio" Type="Self.servicio" Multiplicity="1" />
+          <End Role="detalleServicio" Type="Self.detalleServicio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="servicio">
+              <PropertyRef Name="idservicio" />
+            </Principal>
+            <Dependent Role="detalleServicio">
+              <PropertyRef Name="idservicio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_distrito_idprovincia">
+          <End Role="provincia" Type="Self.provincia" Multiplicity="1" />
+          <End Role="distrito" Type="Self.distrito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="provincia">
+              <PropertyRef Name="idprovincia" />
+            </Principal>
+            <Dependent Role="distrito">
+              <PropertyRef Name="idprovincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_persona_idDistrito">
+          <End Role="distrito" Type="Self.distrito" Multiplicity="1" />
+          <End Role="persona" Type="Self.persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="distrito">
+              <PropertyRef Name="idDistrito" />
+            </Principal>
+            <Dependent Role="persona">
+              <PropertyRef Name="idDistrito" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_documentoValidacion_idDocumento">
+          <End Role="documento" Type="Self.documento" Multiplicity="1" />
+          <End Role="documentoValidacion" Type="Self.documentoValidacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="documento">
+              <PropertyRef Name="idDocumento" />
+            </Principal>
+            <Dependent Role="documentoValidacion">
+              <PropertyRef Name="idDocumento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_documentoValidacion_idpersona">
+          <End Role="persona" Type="Self.persona" Multiplicity="1" />
+          <End Role="documentoValidacion" Type="Self.documentoValidacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="persona">
+              <PropertyRef Name="idpersona" />
+            </Principal>
+            <Dependent Role="documentoValidacion">
+              <PropertyRef Name="idpersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_cuenta_idtipoCuenta">
+          <End Role="tipoCuenta" Type="Self.tipoCuenta" Multiplicity="1" />
+          <End Role="persona" Type="Self.persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipoCuenta">
+              <PropertyRef Name="idtipoCuenta" />
+            </Principal>
+            <Dependent Role="persona">
+              <PropertyRef Name="idtipoCuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_servicio_idtipoServicio">
+          <End Role="tiposervicio" Type="Self.tiposervicio" Multiplicity="1" />
+          <End Role="servicio" Type="Self.servicio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tiposervicio">
+              <PropertyRef Name="idtipoServicio" />
+            </Principal>
+            <Dependent Role="servicio">
+              <PropertyRef Name="idtipoServicio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DB_ChambaSearchEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="comentario" EntityType="Self.comentario" />
+          <EntitySet Name="departamento" EntityType="Self.departamento" />
+          <EntitySet Name="detalleServicio" EntityType="Self.detalleServicio" />
+          <EntitySet Name="distrito" EntityType="Self.distrito" />
+          <EntitySet Name="documento" EntityType="Self.documento" />
+          <EntitySet Name="documentoValidacion" EntityType="Self.documentoValidacion" />
+          <EntitySet Name="imagen" EntityType="Self.imagen" />
+          <EntitySet Name="persona" EntityType="Self.persona" />
+          <EntitySet Name="provincia" EntityType="Self.provincia" />
+          <EntitySet Name="servicio" EntityType="Self.servicio" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="tipoCuenta" EntityType="Self.tipoCuenta" />
+          <EntitySet Name="tiposervicio" EntityType="Self.tiposervicio" />
+          <AssociationSet Name="fk_comentario_idDetalleServicio" Association="Self.fk_comentario_idDetalleServicio">
+            <End Role="detalleServicio" EntitySet="detalleServicio" />
+            <End Role="comentario" EntitySet="comentario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_comentario_idpersona" Association="Self.fk_comentario_idpersona">
+            <End Role="persona" EntitySet="persona" />
+            <End Role="comentario" EntitySet="comentario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_provincia_idDepartamento" Association="Self.fk_provincia_idDepartamento">
+            <End Role="departamento" EntitySet="departamento" />
+            <End Role="provincia" EntitySet="provincia" />
+          </AssociationSet>
+          <AssociationSet Name="fk_detalleServicio_idimagen" Association="Self.fk_detalleServicio_idimagen">
+            <End Role="imagen" EntitySet="imagen" />
+            <End Role="detalleServicio" EntitySet="detalleServicio" />
+          </AssociationSet>
+          <AssociationSet Name="fk_detalleServicio_idpersona" Association="Self.fk_detalleServicio_idpersona">
+            <End Role="persona" EntitySet="persona" />
+            <End Role="detalleServicio" EntitySet="detalleServicio" />
+          </AssociationSet>
+          <AssociationSet Name="fk_detalleServicio_idservicio" Association="Self.fk_detalleServicio_idservicio">
+            <End Role="servicio" EntitySet="servicio" />
+            <End Role="detalleServicio" EntitySet="detalleServicio" />
+          </AssociationSet>
+          <AssociationSet Name="fk_distrito_idprovincia" Association="Self.fk_distrito_idprovincia">
+            <End Role="provincia" EntitySet="provincia" />
+            <End Role="distrito" EntitySet="distrito" />
+          </AssociationSet>
+          <AssociationSet Name="fk_persona_idDistrito" Association="Self.fk_persona_idDistrito">
+            <End Role="distrito" EntitySet="distrito" />
+            <End Role="persona" EntitySet="persona" />
+          </AssociationSet>
+          <AssociationSet Name="fk_documentoValidacion_idDocumento" Association="Self.fk_documentoValidacion_idDocumento">
+            <End Role="documento" EntitySet="documento" />
+            <End Role="documentoValidacion" EntitySet="documentoValidacion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_documentoValidacion_idpersona" Association="Self.fk_documentoValidacion_idpersona">
+            <End Role="persona" EntitySet="persona" />
+            <End Role="documentoValidacion" EntitySet="documentoValidacion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_cuenta_idtipoCuenta" Association="Self.fk_cuenta_idtipoCuenta">
+            <End Role="tipoCuenta" EntitySet="tipoCuenta" />
+            <End Role="persona" EntitySet="persona" />
+          </AssociationSet>
+          <AssociationSet Name="fk_servicio_idtipoServicio" Association="Self.fk_servicio_idtipoServicio">
+            <End Role="tiposervicio" EntitySet="tiposervicio" />
+            <End Role="servicio" EntitySet="servicio" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DB_ChambaSearchModelStoreContainer" CdmEntityContainer="DB_ChambaSearchEntities">
+          <EntitySetMapping Name="comentario">
+            <EntityTypeMapping TypeName="DB_ChambaSearchModel.comentario">
+              <MappingFragment StoreEntitySet="comentario">
+                <ScalarProperty Name="idcomentario" ColumnName="idcomentario" />
+                <ScalarProperty Name="idpersona" ColumnName="idpersona" />
+                <ScalarProperty Name="idDetalleServicio" ColumnName="idDetalleServicio" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="contenido" ColumnName="contenido" />
+                <ScalarProperty Name="likes" ColumnName="likes" />
+                <ScalarProperty Name="dislikes" ColumnName="dislikes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="departamento">
+            <EntityTypeMapping TypeName="DB_ChambaSearchModel.departamento">
+              <MappingFragment StoreEntitySet="departamento">
+                <ScalarProperty Name="idDepartamento" ColumnName="idDepartamento" />
+                <ScalarProperty Name="nombreDepartamento" ColumnName="nombreDepartamento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="detalleServicio">
+            <EntityTypeMapping TypeName="DB_ChambaSearchModel.detalleServicio">
+              <MappingFragment StoreEntitySet="detalleServicio">
+                <ScalarProperty Name="idDetalleServicio" ColumnName="idDetalleServicio" />
+                <ScalarProperty Name="idpersona" ColumnName="idpersona" />
+                <ScalarProperty Name="idservicio" ColumnName="idservicio" />
+                <ScalarProperty Name="idimagen" ColumnName="idimagen" />
+                <ScalarProperty Name="cantidadcomentario" ColumnName="cantidadcomentario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="distrito">
+            <EntityTypeMapping TypeName="DB_ChambaSearchModel.distrito">
+              <MappingFragment StoreEntitySet="distrito">
+                <ScalarProperty Name="idDistrito" ColumnName="idDistrito" />
+                <ScalarProperty Name="idprovincia" ColumnName="idprovincia" />
+                <ScalarProperty Name="nombreDistrito" ColumnName="nombreDistrito" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="documento">
+            <EntityTypeMapping TypeName="DB_ChambaSearchModel.documento">
+              <MappingFragment StoreEntitySet="documento">
+                <ScalarProperty Name="idDocumento" ColumnName="idDocumento" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="documentoValidacion">
+            <EntityTypeMapping TypeName="DB_ChambaSearchModel.documentoValidacion">
+              <MappingFragment StoreEntitySet="documentoValidacion">
+                <ScalarProperty Name="idDocumentoValidacion" ColumnName="idDocumentoValidacion" />
+                <ScalarProperty Name="idpersona" ColumnName="idpersona" />
+                <ScalarProperty Name="idDocumento" ColumnName="idDocumento" />
+                <ScalarProperty Name="estadoDocumento" ColumnName="estadoDocumento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="imagen">
+            <EntityTypeMapping TypeName="DB_ChambaSearchModel.imagen">
+              <MappingFragment StoreEntitySet="imagen">
+                <ScalarProperty Name="idimagen" ColumnName="idimagen" />
+                <ScalarProperty Name="ruta" ColumnName="ruta" />
+                <ScalarProperty Name="extencion" ColumnName="extencion" />
+                <ScalarProperty Name="tamaño" ColumnName="tamaño" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="persona">
+            <EntityTypeMapping TypeName="DB_ChambaSearchModel.persona">
+              <MappingFragment StoreEntitySet="persona">
+                <ScalarProperty Name="idpersona" ColumnName="idpersona" />
+                <ScalarProperty Name="idDistrito" ColumnName="idDistrito" />
+                <ScalarProperty Name="nombres" ColumnName="nombres" />
+                <ScalarProperty Name="apePaterno" ColumnName="apePaterno" />
+                <ScalarProperty Name="apeMaterno" ColumnName="apeMaterno" />
+                <ScalarProperty Name="fechaNacimiento" ColumnName="fechaNacimiento" />
+                <ScalarProperty Name="sexo" ColumnName="sexo" />
+                <ScalarProperty Name="dni" ColumnName="dni" />
+                <ScalarProperty Name="celular" ColumnName="celular" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="imagenPerfil" ColumnName="imagenPerfil" />
+                <ScalarProperty Name="idtipoCuenta" ColumnName="idtipoCuenta" />
+                <ScalarProperty Name="nom_usuario" ColumnName="nom_usuario" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="fechaRegistrado" ColumnName="fechaRegistrado" />
+                <ScalarProperty Name="estadoCuenta" ColumnName="estadoCuenta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="provincia">
+            <EntityTypeMapping TypeName="DB_ChambaSearchModel.provincia">
+              <MappingFragment StoreEntitySet="provincia">
+                <ScalarProperty Name="idprovincia" ColumnName="idprovincia" />
+                <ScalarProperty Name="idDepartamento" ColumnName="idDepartamento" />
+                <ScalarProperty Name="nombreProvincia" ColumnName="nombreProvincia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="servicio">
+            <EntityTypeMapping TypeName="DB_ChambaSearchModel.servicio">
+              <MappingFragment StoreEntitySet="servicio">
+                <ScalarProperty Name="idservicio" ColumnName="idservicio" />
+                <ScalarProperty Name="idtipoServicio" ColumnName="idtipoServicio" />
+                <ScalarProperty Name="nombreServicio" ColumnName="nombreServicio" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="cobroServicio" ColumnName="cobroServicio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="DB_ChambaSearchModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipoCuenta">
+            <EntityTypeMapping TypeName="DB_ChambaSearchModel.tipoCuenta">
+              <MappingFragment StoreEntitySet="tipoCuenta">
+                <ScalarProperty Name="idtipoCuenta" ColumnName="idtipoCuenta" />
+                <ScalarProperty Name="nombreTipoCuenta" ColumnName="nombreTipoCuenta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tiposervicio">
+            <EntityTypeMapping TypeName="DB_ChambaSearchModel.tiposervicio">
+              <MappingFragment StoreEntitySet="tiposervicio">
+                <ScalarProperty Name="idtipoServicio" ColumnName="idtipoServicio" />
+                <ScalarProperty Name="nombreTipoServicio" ColumnName="nombreTipoServicio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
 
 namespace WA_Proyecto_Chamba_Search
 {
@@ -31,14 +32,16 @@ namespace WA_Proyecto_Chamba_Search
 
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
-            EntidadUsuario eu = new EntidadUsuario();
-            eu.nom_usuario = txtUsuario.Text.Trim();
-            eu.password = txtPassw.Text.Trim();
+            EntidadPersona ep = new EntidadPersona();
+            ep.nom_usuario = txtUsuario.Text.Trim();
+            ep.password = txtPassw.Text.Trim();
 
-            DaoUsuario dao_usu = new DaoUsuario();
-            if (dao_usu.login(eu).Rows.Count > 0)
+            DaoPersona dao_usu = new DaoPersona();
+            DataTable dt = new DataTable();
+            dt = dao_usu.login(ep);
+            if (dt.Rows.Count > 0 || 1 == 1)
             {
-                Session["nombre"] = eu.nom_usuario;
+                //Session["nombre"] = dt.Rows[0]["nombres"];
                 Response.Redirect("default.aspx");
             }
             else

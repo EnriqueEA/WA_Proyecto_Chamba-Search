@@ -1,0 +1,38 @@
+﻿/** {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: #faf1f5;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+header {
+    width: 100%;
+    height: auto;
+    max-height: 100px;
+    padding: .8% .5%;
+}
+
+.saludo {
+    width: max-content;
+    padding: .3% .6%;
+}
+.boton {
+    text-decoration: none;
+    width: 30%;
+    color: #050505;
+    background-color: #4cff00;
+    border-radius: 5%;
+    padding: .8%;
+    margin: .6%;
+}
+
+.boton:hover {
+    background-color: #00ff21;
+}
+
+.caja {
+    padding: inherit;
+}*/

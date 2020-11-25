@@ -10,7 +10,7 @@ namespace WA_Proyecto_Chamba_Search
 {
     public partial class WF_RegistroUsuario : System.Web.UI.Page
     {
-        void listaComboDistrito()
+        /*void listaComboDistrito()
         {
             DaoDistrito daoDistrito = new DaoDistrito();
             DataTable dt = new DataTable();
@@ -28,10 +28,9 @@ namespace WA_Proyecto_Chamba_Search
         public void registrarMaestro()
         {
             EntidadPersona ep = new EntidadPersona();
-            EntidadUsuario eu = new EntidadUsuario();
-            ep.nombres_per = txtNombres.Text.Trim();
-            ep.ape_paterno = txtPaterno.Text.Trim();
-            ep.ape_materno = txtMaterno.Text.Trim();
+            ep.nombres = txtNombres.Text.Trim();
+            ep.apePaterno = txtPaterno.Text.Trim();
+            ep.apeMaterno = txtMaterno.Text.Trim();
             ep.fechaNac = txtFechaNac.Text.Trim();
             ep.sexo = rdSexo.SelectedValue.Substring(0, 1);
             ep.dni = txtDNI.Text.Trim();
@@ -39,26 +38,26 @@ namespace WA_Proyecto_Chamba_Search
             ep.celular = txtCelular.Text.Trim();
             ep.email = txtEmail.Text.Trim();
             ep.imagen_perfil = fileupload.PostedFile.FileName;
-            eu.nom_usuario = txtUsusario.Text.Trim();
-            eu.password = txtPassword.Text.Trim();
-            eu.idtipo_usuario = 1;
+            ep.nom_usuario = txtUsusario.Text.Trim();
+            ep.password = txtPassword.Text.Trim();
+            ep.idtipoCuenta = 1;
 
-            DaoUsuario usu = new DaoUsuario();
-            mensaje(usu.insertarUsuario(eu,ep));
-        }
+            DaoPersona usu = new DaoPersona();
+            mensaje(usu.insertarPersona(ep));
+        }*/
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            /*if (!IsPostBack)
             {
                 rdSexo.Items.Add("Hombre");
                 rdSexo.Items.Add("Mujer");
                 listaComboDistrito();
-            }
+            }*/
         }
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            registrarMaestro(); //agregar que envie un mensaje de error desde el sql
+            //registrarMaestro(); //agregar que envie un mensaje de error desde el sql
         }
     }
 }

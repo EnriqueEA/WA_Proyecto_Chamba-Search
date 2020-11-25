@@ -1,0 +1,117 @@
+﻿@model IEnumerable<WA_Chamba.persona>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nombres)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.apePaterno)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.apeMaterno)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fechaNacimiento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sexo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dni)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.celular)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.imagenPerfil)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nom_usuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fechaRegistrado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.estadoCuenta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.distrito.idprovincia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tipoCuenta.nombreTipoCuenta)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombres)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.apePaterno)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.apeMaterno)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fechaNacimiento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sexo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dni)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.celular)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.imagenPerfil)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nom_usuario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fechaRegistrado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.estadoCuenta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.distrito.idprovincia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tipoCuenta.nombreTipoCuenta)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idpersona }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idpersona }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idpersona })
+        </td>
+    </tr>
+}
+
+</table>

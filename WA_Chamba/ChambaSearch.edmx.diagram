@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="987f7c2c2fca4c5a804c7762f0aaea46" Name="Diagram1">
+        <EntityTypeShape EntityType="DB_ChambaSearchModel.comentario" Width="1.5" PointX="9.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_ChambaSearchModel.departamento" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_ChambaSearchModel.detalleServicio" Width="1.5" PointX="12.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_ChambaSearchModel.distrito" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_ChambaSearchModel.documento" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_ChambaSearchModel.documentoValidacion" Width="1.5" PointX="9.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_ChambaSearchModel.imagen" Width="1.5" PointX="10.5" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_ChambaSearchModel.persona" Width="1.5" PointX="7.5" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_ChambaSearchModel.provincia" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_ChambaSearchModel.servicio" Width="1.5" PointX="10.5" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_ChambaSearchModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_ChambaSearchModel.tipoCuenta" Width="1.5" PointX="5.25" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_ChambaSearchModel.tiposervicio" Width="1.5" PointX="8.25" PointY="13.125" IsExpanded="true" />
+        <AssociationConnector Association="DB_ChambaSearchModel.fk_comentario_idDetalleServicio" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_ChambaSearchModel.fk_comentario_idpersona" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_ChambaSearchModel.fk_provincia_idDepartamento" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_ChambaSearchModel.fk_detalleServicio_idimagen" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_ChambaSearchModel.fk_detalleServicio_idpersona" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_ChambaSearchModel.fk_detalleServicio_idservicio" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_ChambaSearchModel.fk_distrito_idprovincia" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_ChambaSearchModel.fk_persona_idDistrito" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_ChambaSearchModel.fk_documentoValidacion_idDocumento" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_ChambaSearchModel.fk_documentoValidacion_idpersona" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_ChambaSearchModel.fk_cuenta_idtipoCuenta" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_ChambaSearchModel.fk_servicio_idtipoServicio" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

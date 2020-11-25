@@ -1,22 +1,11 @@
 CREATE DATABASE DB_ChambaSearch
 GO
-Use DB_ChambaSearch
+USE DB_ChambaSearch
 GO
-CREATE TABLE DB_ChambaSearch.dbo.tipoUsuario (
-idtipoUsuario int identity(1,1),
-nombreTipoUsuario varchar(45) not null,
-constraint pk_idtipoUsuario primary key(idtipoUsuario)
-)
-GO
-CREATE TABLE DB_ChambaSearch.dbo.usuario (
-idusuario int identity(1,1),
-idtipoUsuario int not null,  --fk
-nom_usuario varchar(45) not null,
-contraseña varchar(50) not null,
-fechaRegistrado datetime,
-estado varchar(10) not null, -- hablitado o deshabilitado
-constraint pk_idusuario primary key(idusuario),
-constraint uq_nom_usuario UNIQUE(nom_usuario)
+CREATE TABLE DB_ChambaSearch.dbo.tipoCuenta (
+idtipoCuenta int identity(1,1),
+nombreTipoCuenta varchar(45) not null,
+constraint pk_idtipoCuenta primary key(idtipoCuenta)
 )
 GO
 CREATE TABLE DB_ChambaSearch.dbo.documento (
@@ -55,7 +44,6 @@ constraint pk_idDistrito primary key(idDistrito)
 GO
 CREATE TABLE DB_ChambaSearch.dbo.persona (
 idpersona int identity(1,1),
-idusuario int not null, --fk
 idDistrito varchar(7) not null, --fk
 nombres varchar(45) not null,
 apePaterno varchar(45) not null,
@@ -66,7 +54,14 @@ dni varchar(8),
 celular varchar(9),
 email varchar(45),
 imagenPerfil varchar(20),
+idtipoCuenta int not null,  --fk
+nom_usuario varchar(45) not null,
+password varchar(50) not null,
+fechaRegistrado datetime,
+estadoCuenta varchar(10) not null, -- hablitado o deshabilitado
 constraint pk_idpersona primary key(idpersona),
+constraint uq_nom_usuario UNIQUE(nom_usuario),
+constraint uq_email UNIQUE(email),
 constraint uq_dni UNIQUE(dni)
 )
 GO
@@ -81,7 +76,7 @@ constraint uq_ruta UNIQUE (ruta)
 GO
 CREATE TABLE DB_ChambaSearch.dbo.comentario (
 idcomentario int identity(1,1),
-idusuario int not null,
+idpersona int not null,
 idDetalleServicio int not null, --fk
 titulo varchar(20) not null,
 contenido varchar(500) not null,
@@ -114,10 +109,8 @@ cobroServicio decimal(5,2) not null, --duditativo
 constraint pk_idservicio primary key(idservicio)
 )
 GO
-Alter TABLE DB_ChambaSearch.dbo.usuario add constraint fk_usuario_idtipoUsuario 
-foreign key (idtipoUsuario) references tipoUsuario(idtipoUsuario)
-Alter TABLE DB_ChambaSearch.dbo.persona add constraint fk_persona_idusuario 
-foreign key (idusuario) references usuario(idusuario)
+Alter TABLE DB_ChambaSearch.dbo.persona add constraint fk_cuenta_idtipoCuenta 
+foreign key (idtipoCuenta) references tipoCuenta(idtipoCuenta)
 Alter TABLE DB_ChambaSearch.dbo.provincia add constraint fk_provincia_idDepartamento 
 foreign key (idDepartamento) references departamento(idDepartamento)
 Alter TABLE DB_ChambaSearch.dbo.distrito add constraint fk_distrito_idprovincia 
@@ -136,8 +129,8 @@ Alter TABLE DB_ChambaSearch.dbo.documentoValidacion add constraint fk_documentoV
 foreign key (idpersona) references persona(idpersona)
 Alter TABLE DB_ChambaSearch.dbo.documentoValidacion add constraint fk_documentoValidacion_idDocumento 
 foreign key (idDocumento) references documento(idDocumento)
-Alter TABLE DB_ChambaSearch.dbo.comentario add constraint fk_comentario_idusuario 
-foreign key (idusuario) references usuario(idusuario)
+Alter TABLE DB_ChambaSearch.dbo.comentario add constraint fk_comentario_idpersona 
+foreign key (idpersona) references persona(idpersona)
 Alter TABLE DB_ChambaSearch.dbo.comentario add constraint fk_comentario_idDetalleServicio 
 foreign key (idDetalleServicio) references detalleServicio(idDetalleServicio)
 GO
@@ -152,74 +145,37 @@ Begin
 	Values (@idTipoServicio,@nom_srv,@desc,@prec_srv)
 End
 GO
-/*CREATE PROCEDURE pd_insertar_usuario_normal (
-@idusu int,@idDis int,@nombres varchar(50),@apePaterno varchar(50),
-@apeMaterno varchar(50),@fechaNac date, @sexo varchar(2))
-As
-Begin
-	Insert Into persona 
-	([idusuario],[idDistrito],[nombres],[apePaterno],
-	[apeMaterno],[fechaNacimiento],[sexo]) 
-	Values(@idusu,@idDis,@nombres,@apePaterno,@apeMaterno,@fechaNac,@sexo)
-
-End*/
-CREATE PROCEDURE pd_insertar_usuario_normal (
-@tipo_usu int,@nom_usu varchar(45),@password varchar(50),
-@idDis int,@nombres varchar(50),@apePaterno varchar(50),
-@apeMaterno varchar(50),@fechaNac date, @sexo varchar(2))
+ALTER PROCEDURE pd_insertar_persona(
+@idDistrito int,@nombres varchar(50),@apePaterno varchar(50),@apeMaterno varchar(50),
+@fechaNac date,@sexo varchar(2),@dni varchar(9) = null,@celular varchar(9) = null,
+@email varchar(45) = null,@imagenPerfil varchar(20) = null,@idtipoCuenta int,
+@nom_usu varchar(45),@password varchar(45))
 AS
 BEGIN
-    INSERT INTO usuario VALUES(@tipo_usu,@nom_usu,@password,getdate(),'Habilitado')
-    
-    DECLARE @idusu int
-
-    SELECT @idusu = idusuario FROM usuario
-    WHERE nom_usuario = @nom_usu
-
-	INSERT INTO persona 
-	([idusuario],[idDistrito],[nombres],[apePaterno],[apeMaterno],[fechaNacimiento],[sexo]) 
-	VALUES(@idusu,@idDis,@nombres,@apePaterno,@apeMaterno,@fechaNac,@sexo)
+	IF @idtipoCuenta = 1
+		INSERT INTO persona
+		([idDistrito],[nombres],[apePaterno],[apeMaterno],[fechaNacimiento],[sexo],
+		[imagenPerfil],[idtipoCuenta],[nom_usuario],[password],[fechaRegistrado],[estadoCuenta]) 
+	IF @idtipoCuenta = 2
+		INSERT INTO persona 
+		([idDistrito],[nombres],[apePaterno],[apeMaterno],[fechaNacimiento],
+		[sexo],[dni],[celular],[email],[imagenPerfil],[idtipoCuenta],
+		[nom_usuario],[password],[fechaRegistrado],[estadoCuenta]) 
+		VALUES(
+			@idDistrito,@nombres,@apePaterno,@apeMaterno,@fechaNac,@sexo,@dni,@celular,
+			@email,@imagenPerfil,@idtipoCuenta,@nom_usu,@password,GETDATE(),'Habilitado')
+	ELSE IF @idtipoCuenta = 3
+		INSERT INTO persona 
+		([idDistrito],[nombres],[apePaterno],[apeMaterno],[fechaNacimiento],
+		[sexo],[imagenPerfil],[idtipoCuenta],
+		[nom_usuario],[password],[fechaRegistrado],[estadoCuenta])
+		VALUES
+			(@idDistrito,@nombres,@apePaterno,@apeMaterno,@fechaNac,@sexo,
+			@imagenPerfil,@idtipoCuenta,@nom_usu,@password,GETDATE(),'Habilitado')
+	ELSE
+		PRINT 'Tipo de cuenta no existente'
 END
-GO
-/*CREATE PROCEDURE pd_insertar_usuario_maestro (
-@idusu int,@idtipoPers int,@idDis int,@image varchar(30),@nombres varchar(50),
-@apePaterno varchar(50),@apeMaterno varchar(50),@fechaNac date,@dni varchar(11),
-@sexo varchar(2),@celu varchar(8),@email varchar(20))
-As
-Begin
-	Insert Into persona 
-		([idusuario],[idDistrito],[nombres],
-		[apePaterno],[apeMaterno],[fechaNacimiento],[dni],[sexo],[celular],[email],[imagenPerfil])
-	Values
-		(@idusu,@idDis,@image,@nombres,@apePaterno,@apeMaterno,
-		@fechaNac,@dni,@sexo,@celu,@email)
-
-End*/
-GO
-alter PROCEDURE pd_insertar_usuario_maestro (
-@tipo_usu int,@nom_usu varchar(45),@password varchar(50),@idDis int,
-@image varchar(30),@nombres varchar(50),@apePaterno varchar(50),
-@apeMaterno varchar(50),@fechaNac date,@dni varchar(11),
-@sexo varchar(2),@celu varchar(8),@email varchar(20))
-AS
-BEGIN
-	INSERT INTO usuario VALUES(@tipo_usu,@nom_usu,@password,getdate(),'Habilitado')
-    
-    DECLARE @idusu int
-
-    SELECT @idusu = idusuario FROM usuario
-    WHERE nom_usuario = @nom_usu
-
-	INSERT INTO persona 
-		([idusuario],[idDistrito],[nombres],
-		[apePaterno],[apeMaterno],[fechaNacimiento],[dni],[sexo],[celular],[email],[imagenPerfil])
-	VALUES
-		(@idusu,@idDis,@nombres,@apePaterno,@apeMaterno,
-		@fechaNac,@dni,@sexo,@celu,@email,@image)
-
-END
-GO
-
+GO 
 /**************************************INSERTS***********************************************/
 
 /*
@@ -232,18 +188,16 @@ pintor
 limpieza
 */
 
-/*INSERT INTO tipoUsuario VALUES('Administrador')
-INSERT INTO tipoUsuario VALUES('Laboral')
-INSERT INTO tipoUsuario VALUES('Visitante')*/
+INSERT INTO tipoCuenta VALUES('Administrador')
+INSERT INTO tipoCuenta VALUES('Laboral')
+INSERT INTO tipoCuenta VALUES('Visitante')
 
---INSERT INTO tiposervicio Values ('pintor')
+INSERT INTO tiposervicio Values ('pintor')
 
---SELECT * FROM tipoUsuario
+--SELECT * FROM tipoCuenta
 
-EXECUTE pd_insertar_usuario_maestro 1,'EnriqueEA','123','150117',null,'Enrique','E','A','19-02-2000','63478099','H','87399893','enriqueea@gmail.com'
-GO
-----------------------------------------------
-
+EXECUTE pd_insertar_persona '150117','Enrique','Elescano','Avendaño','19-02-2000','H','58726783',
+							'987387467','enrelescanoa@uch.pe','',2,'EnriqueEA','ninguna'
 
 GO
 
@@ -254,5 +208,7 @@ INNER JOIN provincia p ON p.idDepartamento=d.idDepartamento
 INNER JOIN distrito di ON di.idprovincia=p.idprovincia
 WHERE p.nombreProvincia LIKE '%lima%'
 GO
-SELECT * FROM persona
-SELECT * FROM usuario
+
+SELECT p.*, tc.nombreTipoCuenta FROM persona p
+join tipoCuenta tc on tc.idtipoCuenta=p.idtipoCuenta
+GO

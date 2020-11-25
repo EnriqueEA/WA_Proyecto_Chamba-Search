@@ -1,11 +1,11 @@
-﻿.contenedor {
+﻿/*.contenedor {
     margin: 13% 38% 0 38%;
     padding: 2% 3%;
     border: 1px solid #808080;
 }
 
 .text {
-    width: 25%;
+    width: 98%;
     height: 10%;
     border: #808080 solid 1px;
     border-radius: .4rem;
@@ -15,4 +15,4 @@
 
 .text:hover {
     border: solid 1px #ff7474;
-}
+}*/

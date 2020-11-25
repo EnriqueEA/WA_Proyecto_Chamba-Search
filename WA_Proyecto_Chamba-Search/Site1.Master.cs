@@ -11,7 +11,7 @@ namespace WA_Proyecto_Chamba_Search
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            //lblBienvenida.Text = Session["nombre"].ToString();
         }
     }
 }
