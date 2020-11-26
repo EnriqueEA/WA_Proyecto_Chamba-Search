@@ -1,0 +1,45 @@
+﻿@model IEnumerable<WA_Chamba.documentoValidacion>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.estadoDocumento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.documento.descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.persona.idDistrito)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.estadoDocumento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.documento.descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.persona.idDistrito)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idDocumentoValidacion }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idDocumentoValidacion }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idDocumentoValidacion })
+        </td>
+    </tr>
+}
+
+</table>

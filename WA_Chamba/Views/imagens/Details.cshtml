@@ -1,0 +1,42 @@
+﻿@model WA_Chamba.imagen
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>imagen</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ruta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ruta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.extencion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.extencion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tamaño)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tamaño)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idimagen }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

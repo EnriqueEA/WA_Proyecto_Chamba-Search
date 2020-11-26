@@ -1,0 +1,42 @@
+﻿@model WA_Chamba.documentoValidacion
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>documentoValidacion</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.estadoDocumento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estadoDocumento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.documento.descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.documento.descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.persona.idDistrito)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.persona.idDistrito)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idDocumentoValidacion }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

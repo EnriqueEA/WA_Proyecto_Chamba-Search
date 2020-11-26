@@ -1,0 +1,26 @@
+﻿@model WA_Chamba.tipoCuenta
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tipoCuenta</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombreTipoCuenta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombreTipoCuenta)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idtipoCuenta }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

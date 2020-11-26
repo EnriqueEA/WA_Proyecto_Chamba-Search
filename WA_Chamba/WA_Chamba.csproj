@@ -149,8 +149,12 @@
     <Compile Include="Controllers\comentariosController.cs" />
     <Compile Include="Controllers\detalleServiciosController.cs" />
     <Compile Include="Controllers\distritoesController.cs" />
+    <Compile Include="Controllers\documentoesController.cs" />
+    <Compile Include="Controllers\documentoValidacionsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\imagensController.cs" />
     <Compile Include="Controllers\personasController.cs" />
+    <Compile Include="Controllers\tipoCuentasController.cs" />
     <Compile Include="departamento.cs">
       <DependentUpon>ChambaSearch.tt</DependentUpon>
     </Compile>
@@ -265,6 +269,26 @@
     <Content Include="Views\detalleServicios\Details.cshtml" />
     <Content Include="Views\detalleServicios\Edit.cshtml" />
     <Content Include="Views\detalleServicios\Index.cshtml" />
+    <Content Include="Views\documentoes\Create.cshtml" />
+    <Content Include="Views\documentoes\Delete.cshtml" />
+    <Content Include="Views\documentoes\Details.cshtml" />
+    <Content Include="Views\documentoes\Edit.cshtml" />
+    <Content Include="Views\documentoes\Index.cshtml" />
+    <Content Include="Views\documentoValidacions\Create.cshtml" />
+    <Content Include="Views\documentoValidacions\Delete.cshtml" />
+    <Content Include="Views\documentoValidacions\Details.cshtml" />
+    <Content Include="Views\documentoValidacions\Edit.cshtml" />
+    <Content Include="Views\documentoValidacions\Index.cshtml" />
+    <Content Include="Views\tipoCuentas\Create.cshtml" />
+    <Content Include="Views\tipoCuentas\Delete.cshtml" />
+    <Content Include="Views\tipoCuentas\Details.cshtml" />
+    <Content Include="Views\tipoCuentas\Edit.cshtml" />
+    <Content Include="Views\tipoCuentas\Index.cshtml" />
+    <Content Include="Views\imagens\Create.cshtml" />
+    <Content Include="Views\imagens\Delete.cshtml" />
+    <Content Include="Views\imagens\Details.cshtml" />
+    <Content Include="Views\imagens\Edit.cshtml" />
+    <Content Include="Views\imagens\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
