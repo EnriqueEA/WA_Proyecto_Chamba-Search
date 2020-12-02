@@ -1,0 +1,39 @@
+﻿@model IEnumerable<WA_Chamba.provincia>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nombreProvincia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.departamento.nombreDepartamento)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombreProvincia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.departamento.nombreDepartamento)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idprovincia }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idprovincia }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idprovincia })
+        </td>
+    </tr>
+}
+
+</table>

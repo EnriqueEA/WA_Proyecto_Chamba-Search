@@ -1,0 +1,50 @@
+﻿@model WA_Chamba.servicio
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>servicio</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombreServicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombreServicio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cobroServicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cobroServicio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tiposervicio.nombreTipoServicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tiposervicio.nombreTipoServicio)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idservicio }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

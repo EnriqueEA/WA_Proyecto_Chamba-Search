@@ -3,6 +3,7 @@
     <link href="css/style.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div class="container">
     <div class="form-group row">
         <div class="col">
             <asp:Label ID="Label1" runat="server" Text="Nombres:"></asp:Label>
@@ -28,7 +29,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="form-group row">
         <div class="col-2">
             <asp:Label ID="Label6" runat="server" Text="Sexo:"></asp:Label>
             <br />
@@ -57,7 +58,7 @@
             <br />
         </div>
     </div>
-    <div class="row">
+    <div class="form-group row">
         <div class="col">
             <asp:Label ID="Label8" runat="server" Text="Email:"></asp:Label>
             <br />
@@ -69,8 +70,6 @@
             <br />
             <asp:TextBox ID="txtUsusario" CssClass="form-control" runat="server"></asp:TextBox>
         </div>
-    </div>
-    <div class="row">
         <div class="col">
             <asp:Label ID="Label12" runat="server" Text="Contraseña:"></asp:Label>
             <br />
@@ -83,18 +82,22 @@
             <asp:TextBox ID="txtRepetirPswd" CssClass="form-control" runat="server" TextMode="Password"></asp:TextBox>
             <br />
         </div>
-        <div class="col">
-            <div class="custom-file">
-                <asp:Label ID="Label9" CssClass="custom-file-label" runat="server" Text="Imagen de Perfil:"></asp:Label>
-                <br />
-                <asp:FileUpload CssClass="custom-file-input" ID="fileupload" runat="server" />
-                <br />
+    </div>
+        <div class="form-group row">
+            <div class="col">
+                <div class="custom-file">
+                    <asp:Label ID="Label9" CssClass="custom-file-label" runat="server" Text="Imagen de Perfil:">Seleccione una Imagen</asp:Label>
+                    <br />
+                    <asp:FileUpload CssClass="custom-file-input" ID="fileupload" runat="server" />
+                    <br />
+                </div>
             </div>
+            <div class="col">
+            <asp:Button ID="Button1" CssClass="btn btn-primary" runat="server" OnClick="Button1_Click" Text="Registrarse" />
         </div>
     </div>
-    <asp:Button ID="Button1" CssClass="btn btn-primary" runat="server" OnClick="Button1_Click" Text="Registrarse" />
-    <br />
-        <!---
+    </div>
+    <!---
     <div class="jumbotron">
         <div class="container text-center">
             <h1>My Portfolio</h1>

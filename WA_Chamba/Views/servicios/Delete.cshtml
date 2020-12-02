@@ -1,0 +1,56 @@
+﻿@model WA_Chamba.servicio
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>servicio</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombreServicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombreServicio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cobroServicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cobroServicio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tiposervicio.nombreTipoServicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tiposervicio.nombreTipoServicio)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

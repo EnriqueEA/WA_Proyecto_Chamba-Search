@@ -147,6 +147,7 @@
       <DependentUpon>ChambaSearch.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\comentariosController.cs" />
+    <Compile Include="Controllers\departamentoesController.cs" />
     <Compile Include="Controllers\detalleServiciosController.cs" />
     <Compile Include="Controllers\distritoesController.cs" />
     <Compile Include="Controllers\documentoesController.cs" />
@@ -154,7 +155,10 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\imagensController.cs" />
     <Compile Include="Controllers\personasController.cs" />
+    <Compile Include="Controllers\provinciasController.cs" />
+    <Compile Include="Controllers\serviciosController.cs" />
     <Compile Include="Controllers\tipoCuentasController.cs" />
+    <Compile Include="Controllers\tiposerviciosController.cs" />
     <Compile Include="departamento.cs">
       <DependentUpon>ChambaSearch.tt</DependentUpon>
     </Compile>
@@ -289,6 +293,26 @@
     <Content Include="Views\imagens\Details.cshtml" />
     <Content Include="Views\imagens\Edit.cshtml" />
     <Content Include="Views\imagens\Index.cshtml" />
+    <Content Include="Views\servicios\Create.cshtml" />
+    <Content Include="Views\servicios\Delete.cshtml" />
+    <Content Include="Views\servicios\Details.cshtml" />
+    <Content Include="Views\servicios\Edit.cshtml" />
+    <Content Include="Views\servicios\Index.cshtml" />
+    <Content Include="Views\tiposervicios\Create.cshtml" />
+    <Content Include="Views\tiposervicios\Delete.cshtml" />
+    <Content Include="Views\tiposervicios\Details.cshtml" />
+    <Content Include="Views\tiposervicios\Edit.cshtml" />
+    <Content Include="Views\tiposervicios\Index.cshtml" />
+    <Content Include="Views\provincias\Create.cshtml" />
+    <Content Include="Views\provincias\Delete.cshtml" />
+    <Content Include="Views\provincias\Details.cshtml" />
+    <Content Include="Views\provincias\Edit.cshtml" />
+    <Content Include="Views\provincias\Index.cshtml" />
+    <Content Include="Views\departamentoes\Create.cshtml" />
+    <Content Include="Views\departamentoes\Delete.cshtml" />
+    <Content Include="Views\departamentoes\Details.cshtml" />
+    <Content Include="Views\departamentoes\Edit.cshtml" />
+    <Content Include="Views\departamentoes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
