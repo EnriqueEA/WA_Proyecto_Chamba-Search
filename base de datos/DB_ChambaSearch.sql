@@ -7,7 +7,7 @@ idtipoCuenta int identity(1,1),
 nombreTipoCuenta varchar(45) not null,
 constraint pk_idtipoCuenta primary key(idtipoCuenta)
 )
-GO
+GO	
 CREATE TABLE DB_ChambaSearch.dbo.documento (
 idDocumento int identity(1,1),
 descripcion varchar(30) not null,
@@ -167,7 +167,7 @@ BEGIN
 		[nom_usuario],[password],[fechaRegistrado],[estadoCuenta]) 
 		VALUES(
 			@idDistrito,@nombres,@apePaterno,@apeMaterno,@fechaNac,@sexo,@dni,@celular,
-			@email,@imagenPerfil,@idtipoCuenta,@nom_usu,@password,GETDATE(),'Habilitado')
+			@email,@imagenPerfil,@idtipoCuenta,@nom_usu,@password,GETDATE(),@estadoCuenta)
 	ELSE IF @idtipoCuenta = 3
 		INSERT INTO persona 
 		([idDistrito],[nombres],[apePaterno],[apeMaterno],[fechaNacimiento],
@@ -175,11 +175,11 @@ BEGIN
 		[nom_usuario],[password],[fechaRegistrado],[estadoCuenta])
 		VALUES
 			(@idDistrito,@nombres,@apePaterno,@apeMaterno,@fechaNac,@sexo,
-			@imagenPerfil,@idtipoCuenta,@nom_usu,@password,GETDATE(),'Habilitado')
+			@imagenPerfil,@idtipoCuenta,@nom_usu,@password,GETDATE(),@estadoCuenta)
 	ELSE
 		PRINT 'Tipo de cuenta no existente.'
 END
-GO 
+GO  
 /**************************************INSERTS***********************************************/
 
 /*
