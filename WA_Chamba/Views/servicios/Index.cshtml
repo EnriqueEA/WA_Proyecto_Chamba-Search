@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<WA_Chamba.servicio>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Indice";
 }
 
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crear uno Nuevo", "Create")
 </p>
 <table class="table">
     <tr>
@@ -26,26 +26,27 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombreServicio)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.descripcion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.cobroServicio)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tiposervicio.nombreTipoServicio)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.idservicio }) |
-            @Html.ActionLink("Details", "Details", new { id=item.idservicio }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.idservicio })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombreServicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cobroServicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tiposervicio.nombreTipoServicio)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.idservicio }) |
+                @Html.ActionLink("Detalles", "Details", new { id = item.idservicio }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.idservicio })
+            </td>
+        </tr>
+    }
 
 </table>

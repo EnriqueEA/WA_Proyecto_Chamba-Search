@@ -1,0 +1,77 @@
+﻿@model IEnumerable<WA_Chamba.persona>
+
+@{
+    ViewBag.Title = "ConsultaPersonas";
+}
+
+<h2>ConsultaPersonas</h2>
+
+
+<h2>Consulta de Productos por Categria</h2>
+@using (Html.BeginForm("ConsultaPersonas", "Reportes", FormMethod.Post))
+{
+    <div class="form-inline">
+        @Html.Label("Nombre de Usuario:")
+        @Html.TextBox("nombre", "", new { @class = "form-control", placeholder = "Ingrese" })
+        <button type="submit" class="btn btn-success">Buscar</button>
+    </div>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nombres)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.apePaterno)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dni)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.celular)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fechaRegistrado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.estadoCuenta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tipoCuenta.nombreTipoCuenta)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombres)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.apePaterno)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dni)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.celular)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fechaRegistrado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.estadoCuenta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tipoCuenta.nombreTipoCuenta)
+            </td>
+        </tr>
+    }
+
+</table>
+<div sytle="padding:10px; border:1px solid black">
+    <div>
+        <a class="btn btn-success" href="@Url.Action("operacionReporte", new {id="Excel"})">Reporte EXCEL</a>
+        <a class="btn btn-info" href="@Url.Action("operacionReporte", new {id="Word"})">Reporte WORD</a>
+    </div>
+</div>

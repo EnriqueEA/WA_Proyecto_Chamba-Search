@@ -35,7 +35,6 @@ namespace WA_Chamba
         public virtual DbSet<persona> persona { get; set; }
         public virtual DbSet<provincia> provincia { get; set; }
         public virtual DbSet<servicio> servicio { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<tipoCuenta> tipoCuenta { get; set; }
         public virtual DbSet<tiposervicio> tiposervicio { get; set; }
     }

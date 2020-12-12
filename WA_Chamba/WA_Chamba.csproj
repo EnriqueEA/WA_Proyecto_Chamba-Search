@@ -52,6 +52,7 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -146,6 +147,9 @@
     <Compile Include="comentario.cs">
       <DependentUpon>ChambaSearch.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controlador\DaoDistrito.cs" />
+    <Compile Include="Controlador\DaoPersona.cs" />
+    <Compile Include="Controlador\DaoServicio.cs" />
     <Compile Include="Controllers\comentariosController.cs" />
     <Compile Include="Controllers\departamentoesController.cs" />
     <Compile Include="Controllers\detalleServiciosController.cs" />
@@ -156,9 +160,22 @@
     <Compile Include="Controllers\imagensController.cs" />
     <Compile Include="Controllers\personasController.cs" />
     <Compile Include="Controllers\provinciasController.cs" />
+    <Compile Include="Controllers\ReportesController.cs" />
     <Compile Include="Controllers\serviciosController.cs" />
     <Compile Include="Controllers\tipoCuentasController.cs" />
     <Compile Include="Controllers\tiposerviciosController.cs" />
+    <Compile Include="DataSets\DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
     <Compile Include="departamento.cs">
       <DependentUpon>ChambaSearch.tt</DependentUpon>
     </Compile>
@@ -180,6 +197,16 @@
     <Compile Include="imagen.cs">
       <DependentUpon>ChambaSearch.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelo\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modelo\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\EntidadDistrito.cs" />
+    <Compile Include="Modelo\EntidadPersona.cs" />
+    <Compile Include="Modelo\EntidadServicio.cs" />
     <Compile Include="persona.cs">
       <DependentUpon>ChambaSearch.tt</DependentUpon>
     </Compile>
@@ -187,17 +214,69 @@
     <Compile Include="provincia.cs">
       <DependentUpon>ChambaSearch.tt</DependentUpon>
     </Compile>
+    <Compile Include="RegistroMaestro.aspx.cs">
+      <DependentUpon>RegistroMaestro.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegistroMaestro.aspx.designer.cs">
+      <DependentUpon>RegistroMaestro.aspx</DependentUpon>
+    </Compile>
     <Compile Include="servicio.cs">
       <DependentUpon>ChambaSearch.tt</DependentUpon>
     </Compile>
-    <Compile Include="sysdiagrams.cs">
-      <DependentUpon>ChambaSearch.tt</DependentUpon>
+    <Compile Include="Site1.Master.cs">
+      <DependentUpon>Site1.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site1.Master.designer.cs">
+      <DependentUpon>Site1.Master</DependentUpon>
     </Compile>
     <Compile Include="tipoCuenta.cs">
       <DependentUpon>ChambaSearch.tt</DependentUpon>
     </Compile>
     <Compile Include="tiposervicio.cs">
       <DependentUpon>ChambaSearch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\VistaAdmin\Admin.Master.cs">
+      <DependentUpon>Admin.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\VistaAdmin\Admin.Master.designer.cs">
+      <DependentUpon>Admin.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\VistaAdmin\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vistas\VistaAdmin\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\VistaMaestro\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vistas\VistaMaestro\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\LoginMaestro.aspx.cs">
+      <DependentUpon>LoginMaestro.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vistas\LoginMaestro.aspx.designer.cs">
+      <DependentUpon>LoginMaestro.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\VistaMaestro\Maestro.Master.cs">
+      <DependentUpon>Maestro.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vistas\VistaMaestro\Maestro.Master.designer.cs">
+      <DependentUpon>Maestro.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\VistaMaestro\NuevoServicio.aspx.cs">
+      <DependentUpon>NuevoServicio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vistas\VistaMaestro\NuevoServicio.aspx.designer.cs">
+      <DependentUpon>NuevoServicio.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -215,10 +294,31 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="css\master.css" />
+    <Content Include="css\style.css" />
+    <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="img\carpintero2.jfif" />
+    <Content Include="img\carpinteto1.jfif" />
+    <Content Include="img\chambasearch.png" />
+    <Content Include="img\cocinero.jpg" />
+    <Content Include="img\constructor.jfif" />
+    <Content Include="img\costurera.jpg" />
+    <Content Include="img\costurera2.jpg" />
+    <Content Include="img\destination_map_marker.png" />
+    <Content Include="img\entrador personal.jpg" />
+    <Content Include="img\oficios.jpg" />
+    <Content Include="img\peluquero.jpg" />
+    <Content Include="img\plomero.jpg" />
+    <Content Include="img\taxista.jpg" />
+    <Content Include="img\trabajador.jpg" />
+    <Content Include="img\zapatero1.jpg" />
+    <Content Include="img\zapatero2.jpg" />
+    <Content Include="Modelo\Default.aspx" />
+    <Content Include="RegistroMaestro.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="ChambaSearch.edmx">
@@ -227,6 +327,17 @@
     </EntityDeploy>
     <Content Include="ChambaSearch.edmx.diagram">
       <DependentUpon>ChambaSearch.edmx</DependentUpon>
+    </Content>
+    <Content Include="DataSets\DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Content>
+    <None Include="DataSets\DataSet1.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="DataSets\DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -239,6 +350,10 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Vistas\VistaAdmin\Default.aspx" />
+    <Content Include="Vistas\VistaMaestro\Default.aspx" />
+    <Content Include="Vistas\LoginMaestro.aspx" />
+    <Content Include="Vistas\VistaMaestro\NuevoServicio.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -313,9 +428,14 @@
     <Content Include="Views\departamentoes\Details.cshtml" />
     <Content Include="Views\departamentoes\Edit.cshtml" />
     <Content Include="Views\departamentoes\Index.cshtml" />
+    <Content Include="Vistas\VistaMaestro\Maestro.Master" />
+    <Content Include="Site1.Master" />
+    <Content Include="Vistas\VistaAdmin\Admin.Master" />
+    <Content Include="Views\Reportes\ConsultaPersonas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="imagenes\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
@@ -333,6 +453,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Reportes\Report1.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
